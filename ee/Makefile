@@ -26,7 +26,7 @@ clean:
 
 install:
 	mkdir -p $(PS2DEV)/isjpcm/include $(PS2DEV)/isjpcm/lib
-	cp src/*.h $(PS2DEV)/isjpcm/include
+	cp $(EE_SRC_DIR)*.h $(PS2DEV)/isjpcm/include
 	cp $(EE_LIB) $(PS2DEV)/isjpcm/lib
 
 include $(PS2SDK)/Defs.make

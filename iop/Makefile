@@ -6,25 +6,26 @@
 # Licenced under Academic Free License version 2.0
 # Review ps2sdk README & LICENSE files for further details.
 #-----------------------------------------------------------------------
-# flags : -DNOPRINT (disable printf)
+# IOP_CFLAGS += -DNOPRINT (disable printf)
+# IOP_CFLAGS += -DLIBSD (enable libsd/freesd based library)
 
 IOP_OBJS_DIR = obj/
 IOP_BIN_DIR = bin/
 IOP_SRC_DIR = src/
 
-BIN2S = $(PS2SDK)/bin/bin2s
+IOP_BIN  = $(IOP_BIN_DIR)isjpcm.irx
+IOP_OBJS = hw.o sjpcm_irx.o spu2.o imports.o
+IOP_OBJS := $(IOP_OBJS:%=$(IOP_OBJS_DIR)%)
 
-IOP_BIN  = bin/isjpcm.irx
-IOP_OBJS = obj/hw.o obj/sjpcm_irx.o obj/spu2.o obj/imports.o
-
-IOP_CFLAGS  += -Wall -fno-builtin-printf -DISJPCM
-IOP_INCS    += -I$(PS2SDK)/iop/include/ -I$(PS2SDK)/common/include/ -I./src/
-IOP_LDFLAGS += -s
+IOP_CFLAGS += -fno-builtin-printf
+# IOP_CFLAGS += -DISJPCM
+IOP_CFLAGS += -DLIBSD
+IOP_INCS   += -I$(PS2SDK)/iop/include/ -I$(PS2SDK)/common/include/ -I./src/
 
 all: $(IOP_OBJS_DIR) $(IOP_BIN_DIR) $(IOP_BIN) builtin
 
 builtin:
-	$(BIN2S) $(IOP_BIN) $(IOP_BIN_DIR)isjpcmIrx.S isjpcmIrx
+	bin2c $(IOP_BIN) $(IOP_BIN_DIR)isjpcmIrx.c isjpcmIrx
 
 clean:
 	rm -f -r $(IOP_OBJS_DIR) $(IOP_BIN_DIR)
@@ -34,4 +35,5 @@ install:
 	cp $(IOP_BIN) $(PS2DEV)/isjpcm/bin
 
 include $(PS2SDK)/Defs.make
+# include $(PS2SDK)/samples/Makefile.iopglobal
 include ./Rules.make
