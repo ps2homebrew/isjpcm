@@ -173,7 +173,7 @@ void InitSpu2()
 
 void RegisterInterrupts()
 {
-	s32 ret;
+	int ret;
 
 	DisableIntr(0x24, &ret);
 	DisableIntr(0x28, &ret);
@@ -184,8 +184,8 @@ void RegisterInterrupts()
 	ReleaseIntrHandler(0x24);
 	ReleaseIntrHandler(0x28);
 
-	RegisterIntrHandler(0x24, 1, TransInterrupt, &TransIntrData[0]);
-	RegisterIntrHandler(0x28, 1, TransInterrupt, &TransIntrData[1]);
+	RegisterIntrHandler(0x24, 1, (void *)TransInterrupt, &TransIntrData[0]);
+	RegisterIntrHandler(0x28, 1, (void *)TransInterrupt, &TransIntrData[1]);
 	
 	#ifndef ISJPCM
 	VoiceTransComplete[0] = 0;

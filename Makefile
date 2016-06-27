@@ -11,6 +11,6 @@ build-ee:
 build-iop:
 	$(MAKE) -C iop
 
-install:
+install: all
 	$(MAKE) -C ee install
 	$(MAKE) -C iop install

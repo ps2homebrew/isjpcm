@@ -34,6 +34,8 @@
 
 #ifndef LIBSD
 	#include "spu2.h"
+#else
+	#include <freesd.h>
 #endif
 
 #define MODNAME "iSjPCM"
@@ -344,7 +346,7 @@ void* SjPCM_Init(unsigned int* sbuff)
 	SdSetTransCallback(1, (void *)SjPCM_TransCallback);
 
 	// Start audio streaming
-	SdBlockTrans(1,SD_BLOCK_TRANS_LOOP,spubuf, 0x800, 0);
+	SdBlockTrans(1,SD_BLOCK_TRANS_LOOP,(u8 *)spubuf, 0x800, 0);
 
 	#ifndef NOPRINT
 		M_PRINTF("Setting up playing thread\n");
