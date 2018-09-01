@@ -7,17 +7,26 @@
 # Review ps2sdk README & LICENSE files for further details.
 #
 
+IOP_CC_VERSION := $(shell $(IOP_CC) --version 2>&1 | sed -n 's/^.*(GCC) //p')
+
 # include dir
 IOP_INCS := $(IOP_INCS) -Iinclude
 
 # C compiler flags
+IOP_CFLAGS  := -D_IOP -fno-builtin -O2 -G0 -Wall $(IOP_INCS) $(IOP_CFLAGS)
 # -fno-builtin is required to prevent the GCC built-in functions from being included,
 #   for finer-grained control over what goes into each IRX.
 # -msoft-float is to "remind" GCC/Binutils that the soft-float ABI is to be used. This is due to a bug, which
 #   results in the ABI not being passed correctly to binutils and iop-as defaults to the hard-float ABI instead.
 # -mno-explicit-relocs is required to work around the fact that GCC is now known to
 #   output multiple LO relocs after one HI reloc (which the IOP kernel cannot deal with).
-IOP_CFLAGS  := -D_IOP -fno-builtin -msoft-float -mno-explicit-relocs -O2 -G0 -Wall $(IOP_INCS) $(IOP_CFLAGS)
+ifneq ($(IOP_CC_VERSION),3.2.2)
+ifneq ($(IOP_CC_VERSION),3.2.3)
+IOP_CFLAGS += -msoft-float -mno-explicit-relocs
+IOP_IETABLE_CFLAGS := -fno-toplevel-reorder
+endif
+endif
+
 # Linker flags
 IOP_LDFLAGS := -nostdlib -s $(IOP_LDFLAGS)
 
@@ -39,14 +48,14 @@ $(IOP_OBJS_DIR)%.o : $(IOP_SRC_DIR)%.s
 $(IOP_OBJS_DIR)%.o : $(IOP_SRC_DIR)%.lst
 	$(ECHO) "#include \"irx_imports.h\"" > $(IOP_OBJS_DIR)build-imports.c
 	cat $< >> $(IOP_OBJS_DIR)build-imports.c
-	$(IOP_CC) $(IOP_CFLAGS) -fno-toplevel-reorder -I$(IOP_SRC_DIR) -c $(IOP_OBJS_DIR)build-imports.c -o $@
+	$(IOP_CC) $(IOP_CFLAGS) $(IOP_IETABLE_CFLAGS) -I$(IOP_SRC_DIR) -c $(IOP_OBJS_DIR)build-imports.c -o $@
 	-rm -f $(IOP_OBJS_DIR)build-imports.c
 
 # A rule to build exports.tab.
 $(IOP_OBJS_DIR)%.o : $(IOP_SRC_DIR)%.tab
 	$(ECHO) "#include \"irx.h\"" > $(IOP_OBJS_DIR)build-exports.c
 	cat $< >> $(IOP_OBJS_DIR)build-exports.c
-	$(IOP_CC) $(IOP_CFLAGS) -fno-toplevel-reorder -I$(IOP_SRC_DIR) -c $(IOP_OBJS_DIR)build-exports.c -o $@
+	$(IOP_CC) $(IOP_CFLAGS) $(IOP_IETABLE_CFLAGS) -I$(IOP_SRC_DIR) -c $(IOP_OBJS_DIR)build-exports.c -o $@
 	-rm -f $(IOP_OBJS_DIR)build-exports.c
 
 $(IOP_OBJS_DIR):
