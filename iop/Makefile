@@ -20,7 +20,7 @@ IOP_OBJS := $(IOP_OBJS:%=$(IOP_OBJS_DIR)%)
 IOP_CFLAGS += -fno-builtin-printf
 # IOP_CFLAGS += -DISJPCM
 IOP_CFLAGS += -DLIBSD
-IOP_INCS   += -I$(PS2SDK)/iop/include/ -I$(PS2SDK)/common/include/ -I./src/
+IOP_INCS   += -I$(PS2SDK)/iop/include/ -I$(PS2SDK)/common/include/ -I$(PS2SDKSRC)/iop/sound/libsd/src/include/ -I./src/
 
 all: $(IOP_OBJS_DIR) $(IOP_BIN_DIR) $(IOP_BIN) builtin
 
