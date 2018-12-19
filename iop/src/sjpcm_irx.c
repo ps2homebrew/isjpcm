@@ -35,7 +35,7 @@
 #ifndef LIBSD
 	#include "spu2.h"
 #else
-	#include <freesd.h>
+	#include <libsd.h>
 #endif
 
 #define MODNAME "iSjPCM"
