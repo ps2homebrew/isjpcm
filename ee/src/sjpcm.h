@@ -26,19 +26,19 @@
 extern "C" {
 #endif
 
-#define	SJPCM_IRX		0xB0110C5
-#define SJPCM_PUTS		0x01
-#define	SJPCM_INIT		0x02
-#define SJPCM_PLAY		0x03
-#define SJPCM_PAUSE		0x04
-#define SJPCM_SETVOL		0x05
-#define SJPCM_ENQUEUE		0x06
-#define SJPCM_CLEARBUFF		0x07
-#define SJPCM_QUIT		0x08
-#define SJPCM_GETAVAIL  	0x09
-#define SJPCM_GETBUFFD  	0x10
-#define SJPCM_SETNUMBLOCKS	0x11
-#define SJPCM_SETTHRESHOLD	0x12
+#define SJPCM_IRX 0xB0110C5
+#define SJPCM_PUTS 0x01
+#define SJPCM_INIT 0x02
+#define SJPCM_PLAY 0x03
+#define SJPCM_PAUSE 0x04
+#define SJPCM_SETVOL 0x05
+#define SJPCM_ENQUEUE 0x06
+#define SJPCM_CLEARBUFF 0x07
+#define SJPCM_QUIT 0x08
+#define SJPCM_GETAVAIL 0x09
+#define SJPCM_GETBUFFD 0x10
+#define SJPCM_SETNUMBLOCKS 0x11
+#define SJPCM_SETTHRESHOLD 0x12
 
 void SjPCM_Puts(char *format, ...);
 int SjPCM_Init(int sync);
@@ -57,4 +57,4 @@ void SjPCM_Quit();
 }
 #endif
 
-#endif // _SJPCM_H
+#endif  // _SJPCM_H
