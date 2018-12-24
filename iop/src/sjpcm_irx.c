@@ -143,7 +143,7 @@ int _start()
 	CpuEnableIntr(0);
 	//  EnableIntr(36);	// Enables SPU DMA (channel 0) interrupt.
 	EnableIntr(40);  // Enables SPU DMA (channel 1) interrupt.
-	                 //  EnableIntr(9);	// Enables SPU IRQ interrupt.
+					 //  EnableIntr(9);	// Enables SPU IRQ interrupt.
 
 	param.attr = TH_C;
 	param.thread = SjPCM_Thread;
@@ -479,8 +479,8 @@ void *SjPCM_Enqueue(unsigned int *sbuff)
 	// resample buffer if needed
 	if (sbuff[0] != sample_size) {
 		up_samples(tempPCMbufl, tempPCMbufr,
-		           pcmbufl + writepos, pcmbufr + writepos,
-		           sample_size, sbuff[0]);
+				   pcmbufl + writepos, pcmbufr + writepos,
+				   sample_size, sbuff[0]);
 
 		sbuff[0] = sample_size;  // set expected size
 	}
