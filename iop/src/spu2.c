@@ -41,20 +41,20 @@ IntrData TransIntrData[2];
 
 #ifndef ISJPCM
 volatile u16 *ParamRegList[] =
-    {
-        SD_VP_VOLL(0, 0), SD_VP_VOLR(0, 0), SD_VP_PITCH(0, 0), SD_VP_ADSR1(0, 0),
-        SD_VP_ADSR2(0, 0), SD_VP_ENVX(0, 0), SD_VP_VOLXL(0, 0), SD_VP_VOLXR(0, 0),
-        SD_P_MMIX(0), SD_P_MVOLL(0), SD_P_MVOLR(0), SD_P_EVOLL(0),
-        SD_P_EVOLR(0), SD_P_AVOLL(0), SD_P_AVOLR(0), SD_P_BVOLL(0),
-        SD_P_BVOLR(0), SD_P_MVOLXL(0), SD_P_MVOLXR(0), SD_S_PMON_HI(0),
-        SD_S_NON_HI(0), SD_A_KON_HI(0), SD_A_KON_HI(0), SD_S_ENDX_HI(0),
-        SD_S_VMIXL_HI(0), SD_S_VMIXEL_HI(0), SD_S_VMIXR_HI(0), SD_S_VMIXER_HI(0),
-        SD_A_ESA_HI(0), SD_A_EEA_HI(0), SD_A_TSA_HI(0), SD_CORE_IRQA(0),
-        SD_VA_SSA_HI(0, 0), SD_VA_LSAX(0, 0), SD_VA_NAX(0, 0), SD_CORE_ATTR(0),
-        SD_A_TSA_HI(0), SD_A_STD(0),
-        // 1AE & 1B0 are both related to core attr & dma somehow
-        U16_REGISTER(0x1AE), U16_REGISTER(0x1B0),
-        (u16 *)0xBF900334
+	{
+		SD_VP_VOLL(0, 0), SD_VP_VOLR(0, 0), SD_VP_PITCH(0, 0), SD_VP_ADSR1(0, 0),
+		SD_VP_ADSR2(0, 0), SD_VP_ENVX(0, 0), SD_VP_VOLXL(0, 0), SD_VP_VOLXR(0, 0),
+		SD_P_MMIX(0), SD_P_MVOLL(0), SD_P_MVOLR(0), SD_P_EVOLL(0),
+		SD_P_EVOLR(0), SD_P_AVOLL(0), SD_P_AVOLR(0), SD_P_BVOLL(0),
+		SD_P_BVOLR(0), SD_P_MVOLXL(0), SD_P_MVOLXR(0), SD_S_PMON_HI(0),
+		SD_S_NON_HI(0), SD_A_KON_HI(0), SD_A_KON_HI(0), SD_S_ENDX_HI(0),
+		SD_S_VMIXL_HI(0), SD_S_VMIXEL_HI(0), SD_S_VMIXR_HI(0), SD_S_VMIXER_HI(0),
+		SD_A_ESA_HI(0), SD_A_EEA_HI(0), SD_A_TSA_HI(0), SD_CORE_IRQA(0),
+		SD_VA_SSA_HI(0, 0), SD_VA_LSAX(0, 0), SD_VA_NAX(0, 0), SD_CORE_ATTR(0),
+		SD_A_TSA_HI(0), SD_A_STD(0),
+		// 1AE & 1B0 are both related to core attr & dma somehow
+		U16_REGISTER(0x1AE), U16_REGISTER(0x1B0),
+		(u16 *)0xBF900334
 
 };
 #endif
@@ -232,7 +232,7 @@ void ResetAll()
 
 
 u16 VoiceDataInit[16] = {0x707, 0x707, 0x707, 0x707, 0x707, 0x707, 0x707, 0x707,
-                         0, 0, 0, 0, 0, 0, 0, 0};
+						 0, 0, 0, 0, 0, 0, 0, 0};
 
 void InitVoices()
 {
