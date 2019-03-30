@@ -31,8 +31,8 @@ clean:
 	rm -f -r $(IOP_OBJS_DIR) $(IOP_BIN_DIR)
 
 install:
-	mkdir -p $(PS2DEV)/isjpcm/bin
-	cp $(IOP_BIN) $(PS2DEV)/isjpcm/bin
+	mkdir -p $(DESTDIR)$(PS2DEV)/isjpcm/bin
+	cp $(IOP_BIN) $(DESTDIR)$(PS2DEV)/isjpcm/bin
 
 include $(PS2SDK)/Defs.make
 # include $(PS2SDK)/samples/Makefile.iopglobal
