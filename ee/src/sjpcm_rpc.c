@@ -21,7 +21,6 @@
 
 #include <tamtypes.h>
 #include <kernel.h>
-#include <fileio.h>
 #include <sifrpc.h>
 #include <stdarg.h>
 #include <string.h>
