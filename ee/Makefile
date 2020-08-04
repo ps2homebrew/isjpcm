@@ -34,9 +34,9 @@ clean:
 	rm -f -r $(EE_OBJS_DIR) $(EE_LIB_DIR)
 
 install:
-	mkdir -p $(PS2DEV)/isjpcm/include $(PS2DEV)/isjpcm/lib
-	cp $(EE_SRC_DIR)*.h $(PS2DEV)/isjpcm/include
-	cp $(EE_LIB) $(PS2DEV)/isjpcm/lib
+	mkdir -p $(DESTDIR)$(PS2DEV)/isjpcm/include $(DESTDIR)$(PS2DEV)/isjpcm/lib
+	cp $(EE_SRC_DIR)*.h $(DESTDIR)$(PS2DEV)/isjpcm/include
+	cp $(EE_LIB) $(DESTDIR)$(PS2DEV)/isjpcm/lib
 
 include $(PS2SDK)/Defs.make
 #include ./Rules.make
