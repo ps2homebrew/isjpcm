@@ -27,6 +27,7 @@
 */
 
 #include "irx_imports.h"
+#include "hw.h"
 
 #if defined(LIBSD) && defined(ISJPCM)
 #error You must either define LIBSD or ISJPCM, not both at once.
@@ -102,10 +103,6 @@ void *SjPCM_Buffered(unsigned int *sbuff);
 void *SjPCM_SetNumBlocks(unsigned int *sbuff);
 void *SjPCM_SetThreshold(unsigned int *sbuff);
 void *SjPCM_Quit();
-
-extern void wmemcpy(void *dest, void *src, int numwords);
-
-
 
 static unsigned int buffer[0x80];
 

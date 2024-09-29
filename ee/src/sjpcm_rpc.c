@@ -48,13 +48,12 @@ void SjPCM_Puts(char *format, ...)
 {
 	static char buff[4096];
 	va_list args;
-	int rv;
 
 	if (!sjpcm_inited)
 		return;
 
 	va_start(args, format);
-	rv = vsnprintf(buff, 4096, format, args);
+	vsnprintf(buff, 4096, format, args);
 
 	memcpy((char *)(&sbuff[0]), buff, 252);
 	SifCallRpc(&cd0, SJPCM_PUTS, 0, (void *)(&sbuff[0]), 252, (void *)(&sbuff[0]), 252, 0, 0);
