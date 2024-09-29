@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ps2dev/ps2dev:v1.0
+    container: ghcr.io/ps2homebrew/ps2homebrew:main
     # instead of "ps2dev/ps2dev:latest" you can use different tags, for example for old projects you can use "ps2dev/ps2dev:v1.0"
     steps:
     - name: Install dependencies
@@ -15,6 +15,7 @@ jobs:
         apk add build-base git zip
     - uses: actions/checkout@v2
     - run: |
+        git config --global --add safe.directory "$GITHUB_WORKSPACE"
         git fetch --prune --unshallow
     - name: Compile project
       run: |
