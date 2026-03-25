@@ -102,7 +102,7 @@ void *SjPCM_Available(unsigned int *sbuff);
 void *SjPCM_Buffered(unsigned int *sbuff);
 void *SjPCM_SetNumBlocks(unsigned int *sbuff);
 void *SjPCM_SetThreshold(unsigned int *sbuff);
-void *SjPCM_Quit();
+void *SjPCM_Quit(void);
 
 static unsigned int buffer[0x80];
 
@@ -137,7 +137,7 @@ int _start()
 
 	FlushDcache();
 
-	CpuEnableIntr(0);
+	CpuEnableIntr();
 	//  EnableIntr(36);	// Enables SPU DMA (channel 0) interrupt.
 	EnableIntr(40);  // Enables SPU DMA (channel 1) interrupt.
 					 //  EnableIntr(9);	// Enables SPU IRQ interrupt.
@@ -549,7 +549,7 @@ void *SjPCM_SetThreshold(unsigned int *sbuff)
 	return sbuff;
 }
 
-void *SjPCM_Quit(unsigned int *sbuff)
+void *SjPCM_Quit(void)
 {
 	SdSetTransCallback(1, NULL);
 	SdBlockTrans(1, SD_BLOCK_TRANS_STOP, 0, 0, 0);
@@ -559,5 +559,5 @@ void *SjPCM_Quit(unsigned int *sbuff)
 
 	DeleteSema(transfer_sema);
 
-	return sbuff;
+	return NULL;
 }
